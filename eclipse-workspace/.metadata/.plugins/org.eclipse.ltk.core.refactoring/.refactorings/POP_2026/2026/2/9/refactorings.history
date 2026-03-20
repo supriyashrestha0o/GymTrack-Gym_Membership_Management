@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;Week6.Day1.Shape&apos; to &apos;ShapeTest&apos;&#x0D;&#x0A;- Original project: &apos;POP_2026&apos;&#x0D;&#x0A;- Original element: &apos;Week6.Day1.Shape&apos;&#x0D;&#x0A;- Renamed element: &apos;Week6.Day1.ShapeTest&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Shape&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;Week6.Day1{Shape.java[Shape" matchStrategy="1" name="ShapeTest" qualified="false" references="true" similarDeclarations="false" stamp="1771995544092" textual="false" version="1.0"/>
+</session>

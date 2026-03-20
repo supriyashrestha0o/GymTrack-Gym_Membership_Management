@@ -1,0 +1,19 @@
+import java.sql.Statement;
+
+public static void insertStudent(int id, String name, int age) {
+
+    try {
+
+        Connection conn = getConnection();
+
+        String query = "INSERT INTO student VALUES(" + id + ",'" + name + "'," + age + ")";
+
+        Statement stmt = conn.createStatement();
+        stmt.executeUpdate(query);
+
+        System.out.println("Student inserted successfully!");
+
+    } catch(Exception e) {
+        System.out.println(e);
+    }
+}

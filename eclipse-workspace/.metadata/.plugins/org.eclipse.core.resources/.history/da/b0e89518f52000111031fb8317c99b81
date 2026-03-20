@@ -1,0 +1,10 @@
+package com;
+
+public class ResultService {
+	public interface ResultService {
+
+		   void calculate(Student s);
+
+		}
+
+}

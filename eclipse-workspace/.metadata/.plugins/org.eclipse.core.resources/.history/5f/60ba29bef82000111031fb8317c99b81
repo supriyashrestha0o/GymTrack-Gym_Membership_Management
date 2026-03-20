@@ -1,0 +1,36 @@
+package com;
+
+import java.sql.*;
+import java.util.Scanner;
+
+public class LoginTest {
+    public static void main(String[] args) throws Exception {
+        // 1. Establish Connection (Update "password" to your MySQL password)
+        Connection conn = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/logindb", "root", "password");
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter username: ");
+        String username = sc.nextLine();
+
+        System.out.print("Enter password: ");
+        String password = sc.nextLine();
+
+        // 2. Vulnerable SQL String
+        String sql = "SELECT * FROM users WHERE username='" + username + "' AND password='" + password + "'";
+        
+        // Print the SQL to see the "Attack" in action
+        System.out.println("\nExecuting Query: " + sql);
+
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+
+        if(rs.next())
+            System.out.println("Result: Login Successful");
+        else
+            System.out.println("Result: Login Failed");
+
+        conn.close();
+    }
+}

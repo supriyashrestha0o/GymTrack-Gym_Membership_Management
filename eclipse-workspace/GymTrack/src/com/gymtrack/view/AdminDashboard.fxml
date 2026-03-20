@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.gymtrack.controller.AdminDashboardController"
+      spacing="0"
+      style="-fx-background-color: #f5f5f5;">
+
+    <!-- Top Bar -->
+    <HBox style="-fx-background-color: white; -fx-padding: 14 24;
+                 -fx-border-color: #ddd; -fx-border-width: 0 0 1 0;"
+          alignment="CENTER_LEFT" spacing="10">
+        <Label text="⬡ GymTrack"
+               style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #333;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label text="Admin" style="-fx-font-size: 12px; -fx-text-fill: #888;"/>
+        <Button text="Logout" onAction="#handleLogout"
+                style="-fx-background-color: #e0e0e0; -fx-font-size: 12px;"/>
+    </HBox>
+
+    <!-- Main -->
+    <VBox spacing="20" style="-fx-padding: 30;" VBox.vgrow="ALWAYS">
+
+        <Label text="Admin Dashboard"
+               style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+
+        <TabPane fx:id="mainTabPane" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+
+            <!-- Tab 1: Overview -->
+            <Tab text="Overview">
+                <VBox spacing="20" style="-fx-padding: 20;">
+                    <Label text="System Overview"
+                           style="-fx-font-size: 15px; -fx-font-weight: bold;"/>
+                    <HBox spacing="20">
+                        <VBox spacing="6" prefWidth="180"
+                              style="-fx-background-color: white; -fx-padding: 20;
+                                     -fx-border-color: #ddd; -fx-border-radius: 8;">
+                            <Label text="Members"
+                                   style="-fx-text-fill: #888; -fx-font-size: 12px;"/>
+                            <Label fx:id="totalMembersLabel" text="0"
+                                   style="-fx-font-size: 42px; -fx-font-weight: bold;"/>
+                        </VBox>
+                        <VBox spacing="6" prefWidth="180"
+                              style="-fx-background-color: white; -fx-padding: 20;
+                                     -fx-border-color: #ddd; -fx-border-radius: 8;">
+                            <Label text="Trainers"
+                                   style="-fx-text-fill: #888; -fx-font-size: 12px;"/>
+                            <Label fx:id="totalTrainersLabel" text="0"
+                                   style="-fx-font-size: 42px; -fx-font-weight: bold;"/>
+                        </VBox>
+                        <VBox spacing="10" alignment="CENTER_LEFT">
+                            <Button text="List of Members" prefWidth="160"
+                                    onAction="#goToMembers"
+                                    style="-fx-background-color: #d0d0d0;"/>
+                            <Button text="List of Trainers" prefWidth="160"
+                                    onAction="#goToTrainers"
+                                    style="-fx-background-color: #d0d0d0;"/>
+                        </VBox>
+                    </HBox>
+                    <Label text="Management Section"
+                           style="-fx-font-size: 15px; -fx-font-weight: bold;"/>
+                    <HBox spacing="12">
+                        <Button text="Assign Trainer" prefWidth="140"
+                                onAction="#goToAssign"
+                                style="-fx-background-color: #d0d0d0;"/>
+                        <Button text="Delete User" prefWidth="140"
+                                onAction="#goToDelete"
+                                style="-fx-background-color: #d0d0d0;"/>
+                    </HBox>
+                </VBox>
+            </Tab>
+
+            <!-- Tab 2: List of Members -->
+            <Tab text="List of Members">
+                <VBox spacing="12" style="-fx-padding: 20;">
+                    <HBox alignment="CENTER_RIGHT" spacing="10">
+                        <Label text="Search:"/>
+                        <TextField fx:id="memberSearchField" prefWidth="200"
+                                   promptText="Filter by name..."
+                                   onKeyReleased="#filterMembers"/>
+                    </HBox>
+                    <TableView fx:id="membersTable" prefHeight="450">
+                        <columns>
+                            <TableColumn fx:id="colMId"      text="ID"           prefWidth="60"/>
+                            <TableColumn fx:id="colMName"    text="Name"         prefWidth="160"/>
+                            <TableColumn fx:id="colMGender"  text="Gender"       prefWidth="80"/>
+                            <TableColumn fx:id="colMPlan"    text="Plan"         prefWidth="90"/>
+                            <TableColumn fx:id="colMPhone"   text="Phone Number" prefWidth="120"/>
+                            <TableColumn fx:id="colMTrainer" text="Trainer"      prefWidth="130"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </Tab>
+
+            <!-- Tab 3: List of Trainers -->
+            <Tab text="List of Trainers">
+                <VBox spacing="12" style="-fx-padding: 20;">
+                    <HBox alignment="CENTER_RIGHT" spacing="10">
+                        <Label text="Search:"/>
+                        <TextField fx:id="trainerSearchField" prefWidth="200"
+                                   promptText="Filter by name..."
+                                   onKeyReleased="#filterTrainers"/>
+                    </HBox>
+                    <TableView fx:id="trainersTable" prefHeight="450">
+                        <columns>
+                            <TableColumn fx:id="colTId"         text="ID"           prefWidth="60"/>
+                            <TableColumn fx:id="colTName"       text="Name"         prefWidth="150"/>
+                            <TableColumn fx:id="colTGender"     text="Gender"       prefWidth="80"/>
+                            <TableColumn fx:id="colTPhone"      text="Phone Number" prefWidth="120"/>
+                            <TableColumn fx:id="colTSpeciality" text="Speciality"   prefWidth="150"/>
+                            <TableColumn fx:id="colTExperience" text="Experience"   prefWidth="90"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </Tab>
+
+            <!-- Tab 4: Assign Trainer -->
+            <Tab text="Assign Trainer">
+                <VBox spacing="20" style="-fx-padding: 30; -fx-max-width: 480;">
+                    <Label text="Assign Trainer to the Member"
+                           style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="Select Member:" prefWidth="140"/>
+                        <ComboBox fx:id="assignMemberCombo" prefWidth="280"
+                                  promptText="Choose member..."/>
+                    </HBox>
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="Select Trainer:" prefWidth="140"/>
+                        <ComboBox fx:id="assignTrainerCombo" prefWidth="280"
+                                  promptText="Choose trainer..."/>
+                    </HBox>
+                    <HBox alignment="CENTER" style="-fx-padding: 10 0 0 0;">
+                        <Button text="Assign" prefWidth="140" prefHeight="36"
+                                onAction="#handleAssign"
+                                style="-fx-font-size: 14px; -fx-background-color: #d0d0d0;"/>
+                    </HBox>
+                    <Label fx:id="assignStatusLabel" text=""
+                           style="-fx-text-fill: green; -fx-font-size: 12px;"
+                           wrapText="true"/>
+                </VBox>
+            </Tab>
+
+            <!-- Tab 5: Delete User -->
+            <Tab text="Delete User">
+                <VBox spacing="12" style="-fx-padding: 20;">
+                    <HBox alignment="CENTER_RIGHT" spacing="10">
+                        <Label text="Search:"/>
+                        <TextField fx:id="deleteSearchField" prefWidth="200"
+                                   promptText="Filter by name..."
+                                   onKeyReleased="#filterDeleteTable"/>
+                    </HBox>
+                    <TableView fx:id="deleteTable" prefHeight="400">
+                        <columns>
+                            <TableColumn fx:id="colDelSelect" text=""            prefWidth="40"/>
+                            <TableColumn fx:id="colDelId"     text="ID"          prefWidth="60"/>
+                            <TableColumn fx:id="colDelName"   text="Name"        prefWidth="160"/>
+                            <TableColumn fx:id="colDelRole"   text="Role"        prefWidth="90"/>
+                            <TableColumn fx:id="colDelPhone"  text="Phone Number" prefWidth="120"/>
+                            <TableColumn fx:id="colDelEmail"  text="Email"       prefWidth="180"/>
+                        </columns>
+                    </TableView>
+                    <HBox alignment="CENTER">
+                        <Button text="Delete Selected" prefWidth="160" prefHeight="34"
+                                onAction="#deleteSelected"
+                                style="-fx-font-size: 13px; -fx-background-color: #e08080;
+                                       -fx-text-fill: white;"/>
+                    </HBox>
+                </VBox>
+            </Tab>
+
+            <!-- Tab 6: Leave Requests -->
+            <Tab text="Leave Requests">
+                <VBox spacing="12" style="-fx-padding: 20;">
+                    <Label text="Member Leave Requests"
+                           style="-fx-font-size: 15px; -fx-font-weight: bold;"/>
+                    <TableView fx:id="leavesTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="leaveIdCol"     text="ID"          prefWidth="50"/>
+                            <TableColumn fx:id="leaveMemberCol" text="Member Name" prefWidth="150"/>
+                            <TableColumn fx:id="leaveReasonCol" text="Reason"      prefWidth="200"/>
+                            <TableColumn fx:id="leaveStartCol"  text="Start Date"  prefWidth="100"/>
+                            <TableColumn fx:id="leaveEndCol"    text="End Date"    prefWidth="100"/>
+                            <TableColumn fx:id="leaveStatusCol" text="Status"      prefWidth="100"/>
+                            <TableColumn fx:id="leaveActionCol" text="Action"      prefWidth="160"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </Tab>
+
+            <!-- Tab 7: Payments -->
+            <Tab text="Payments">
+                <VBox spacing="12" style="-fx-padding: 20;">
+                    <Label text="Payment Management"
+                           style="-fx-font-size: 15px; -fx-font-weight: bold;"/>
+
+                    <!-- Process New Payment -->
+                    <HBox spacing="10" alignment="CENTER_LEFT"
+                          style="-fx-background-color: white; -fx-padding: 15;
+                                 -fx-border-color: #ddd; -fx-border-radius: 6;">
+                        <Label text="Member:" prefWidth="70"/>
+                        <ComboBox fx:id="paymentMemberCombo" prefWidth="200"
+                                  promptText="Select member..."/>
+                        <Label text="Amount: Rs." prefWidth="90"/>
+                        <TextField fx:id="paymentAmountField" prefWidth="120"
+                                   promptText="Enter amount"/>
+                        <Button text="Process Payment"
+                                onAction="#handleProcessPayment"
+                                style="-fx-background-color: #4CAF50;
+                                       -fx-text-fill: white; -fx-font-size: 12px;"/>
+                        <Label fx:id="paymentStatusLabel" text=""
+                               style="-fx-font-size: 12px;" wrapText="true"/>
+                    </HBox>
+
+                    <!-- Payment History -->
+                    <Label text="Payment History"
+                           style="-fx-font-size: 13px; -fx-font-weight: bold;"/>
+                    <TableView fx:id="paymentsTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colPayId"     text="ID"           prefWidth="60"/>
+                            <TableColumn fx:id="colPayMember" text="Member Name"  prefWidth="180"/>
+                            <TableColumn fx:id="colPayAmount" text="Amount (Rs.)" prefWidth="120"/>
+                            <TableColumn fx:id="colPayDate"   text="Date"         prefWidth="160"/>
+                            <TableColumn fx:id="colPayStatus" text="Status"       prefWidth="100"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </Tab>
+
+        </TabPane>
+    </VBox>
+</VBox>

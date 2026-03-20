@@ -1,0 +1,28 @@
+
+import java.sql.ResultSet;
+
+public static void viewStudents() {
+
+    try {
+
+        Connection conn = getConnection();
+
+        String query = "SELECT * FROM student";
+
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+
+        while(rs.next()) {
+
+            System.out.println(
+                rs.getInt("id") + " "
+                + rs.getString("name") + " "
+                + rs.getInt("age")
+            );
+
+        }
+
+    } catch(Exception e) {
+        System.out.println(e);
+    }
+}

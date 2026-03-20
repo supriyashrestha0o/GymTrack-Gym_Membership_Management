@@ -1,0 +1,18 @@
+
+public static void deleteStudent(int id) {
+
+    try {
+
+        Connection conn = getConnection();
+
+        String query = "DELETE FROM student WHERE id=" + id;
+
+        Statement stmt = conn.createStatement();
+        stmt.executeUpdate(query);
+
+        System.out.println("Student deleted!");
+
+    } catch(Exception e) {
+        System.out.println(e);
+    }
+}

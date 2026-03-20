@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;Week1.Day1.area_triangle&apos; to &apos;area_rectangle&apos;&#x0D;&#x0A;- Original project: &apos;POP_2026&apos;&#x0D;&#x0A;- Original element: &apos;Week1.Day1.area_triangle&apos;&#x0D;&#x0A;- Renamed element: &apos;Week1.Day1.area_rectangle&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;area_triangle&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;Week1.Day1{area_triangle.java[area_triangle" matchStrategy="1" name="area_rectangle" qualified="false" references="true" similarDeclarations="false" stamp="1768667814521" textual="false" version="1.0"/>
+</session>

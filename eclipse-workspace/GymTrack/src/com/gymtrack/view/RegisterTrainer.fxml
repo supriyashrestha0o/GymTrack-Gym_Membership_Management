@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<!--
+  RegisterTrainer.fxml — Trainer Registration Screen
+-->
+
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.gymtrack.controller.RegisterTrainerController"
+            fitToWidth="true"
+            style="-fx-background-color: #f5f5f5;">
+
+    <VBox spacing="20" style="-fx-padding: 30; -fx-background-color: #f5f5f5;">
+
+        <!-- ── Header ── -->
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Button text="← Back" onAction="#goBack"
+                    style="-fx-background-color: #d0d0d0; -fx-font-size: 12px;"/>
+            <Label text="Trainer Registration"
+                   style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+        </HBox>
+
+        <Label fx:id="errorLabel" text=""
+               style="-fx-text-fill: red; -fx-font-size: 12px;"
+               wrapText="true"/>
+
+        <!-- ══ Personal Details ══ -->
+        <VBox spacing="14" style="-fx-background-color: white; -fx-padding: 20; -fx-border-color: #ccc; -fx-border-radius: 6;">
+
+            <Label text="STEP-1: Personal Details"
+                   style="-fx-font-size: 15px; -fx-font-weight: bold;"/>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="FullName:" prefWidth="160" style="-fx-font-size: 13px;"/>
+                <TextField fx:id="fullNameField" prefWidth="300" promptText="Full name"/>
+            </HBox>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="UserName:" prefWidth="160" style="-fx-font-size: 13px;"/>
+                <TextField fx:id="usernameField" prefWidth="300" promptText="Username"/>
+            </HBox>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Password:" prefWidth="160" style="-fx-font-size: 13px;"/>
+                <PasswordField fx:id="passwordField" prefWidth="300"/>
+            </HBox>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Confirm Password:" prefWidth="160" style="-fx-font-size: 13px;"/>
+                <PasswordField fx:id="confirmPasswordField" prefWidth="300"/>
+            </HBox>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Email:" prefWidth="160" style="-fx-font-size: 13px;"/>
+                <TextField fx:id="emailField" prefWidth="300" promptText="example@email.com"/>
+            </HBox>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Phone Number:" prefWidth="160" style="-fx-font-size: 13px;"/>
+                <TextField fx:id="phoneField" prefWidth="300" promptText="10-digit phone"/>
+            </HBox>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="DOB:" prefWidth="160" style="-fx-font-size: 13px;"/>
+                <DatePicker fx:id="dobPicker" prefWidth="300" promptText="Date of birth"/>
+            </HBox>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Speciality:" prefWidth="160" style="-fx-font-size: 13px;"/>
+                <ComboBox fx:id="specialityCombo" prefWidth="300" promptText="Select speciality..."/>
+            </HBox>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Experience (years):" prefWidth="160" style="-fx-font-size: 13px;"/>
+                <ComboBox fx:id="experienceCombo" prefWidth="300" promptText="Select experience..."/>
+            </HBox>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Gender:" prefWidth="160" style="-fx-font-size: 13px;"/>
+                <HBox spacing="16" alignment="CENTER_LEFT">
+                    <RadioButton fx:id="maleRadio"   text="Male"   toggleGroup="$genderGroup"/>
+                    <RadioButton fx:id="femaleRadio" text="Female" toggleGroup="$genderGroup"/>
+                    <RadioButton fx:id="otherRadio"  text="Other"  toggleGroup="$genderGroup"/>
+                </HBox>
+            </HBox>
+
+        </VBox>
+
+        <HBox alignment="CENTER_RIGHT" style="-fx-padding: 0 0 30 0;">
+            <Button text="Register" prefWidth="140" prefHeight="36"
+                    onAction="#handleRegister"
+                    style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-background-color: #d0d0d0;"/>
+        </HBox>
+
+    </VBox>
+</ScrollPane>

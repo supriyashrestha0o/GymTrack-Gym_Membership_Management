@@ -1,0 +1,10 @@
+/**
+ * 
+ */
+/**
+ * 
+ */
+module StudentResultSystem {
+	requires java.sql;
+	exports com;
+}

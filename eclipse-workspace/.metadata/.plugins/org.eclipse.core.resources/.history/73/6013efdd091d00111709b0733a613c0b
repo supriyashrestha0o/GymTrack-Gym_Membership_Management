@@ -1,0 +1,26 @@
+package crud;
+
+import java.sql.Connection;
+import java.sql.Statement;
+
+public class insertStudent {
+
+    public static insertStudent(int id, String name, int age) {
+
+        try {
+
+            Connection conn = DatabaseConnector.getConnection();
+
+            String query = "INSERT INTO student VALUES(" + id + ",'" + name + "'," + age + ")";
+
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate(query);
+
+            System.out.println("Student inserted successfully!");
+
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+    }
+
+}

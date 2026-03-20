@@ -1,8 +1,0 @@
-package com;
-
-	public interface ResultService {
-
-		   void calculate(Student s);
-
-		}
-

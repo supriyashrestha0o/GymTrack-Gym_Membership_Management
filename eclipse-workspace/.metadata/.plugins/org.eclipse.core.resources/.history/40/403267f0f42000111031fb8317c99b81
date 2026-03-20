@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * 
- */
-module StudentResultSystem {
-	requires java.sql;
-}

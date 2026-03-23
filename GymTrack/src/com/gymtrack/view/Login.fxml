@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.gymtrack.controller.LoginController">
+
+    <!-- ── Full Background Image ── -->
+    <ImageView fitWidth="1920" fitHeight="1080" preserveRatio="false">
+        <image>
+            <Image url="@/com/gymtrack/view/gym3.jpeg"/>
+        </image>
+    </ImageView>
+
+    <!-- ── Dark overlay so card is readable ── -->
+    <Region style="-fx-background-color: rgba(0, 0, 0, 0.45);"/>
+
+    <!-- ── Centered Login Card ── -->
+    <VBox alignment="CENTER" spacing="0" maxWidth="480"
+          style="-fx-background-color: rgba(255,255,255,0.95); -fx-border-color: #2D4A3E;
+                 -fx-border-radius: 14; -fx-background-radius: 14; -fx-border-width: 2;
+                 -fx-padding: 40 48 40 48; -fx-effect: dropshadow(gaussian, #2D4A3E, 24, 0.4, 0, 0);">
+
+        <!-- Title -->
+        <VBox alignment="CENTER" spacing="6" style="-fx-padding: 0 0 24 0;">
+            <Label text="GymTrack"
+                   style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #1A2820;"/>
+            <Label text="Gym Membership Management System"
+                   style="-fx-font-size: 12px; -fx-text-fill: #7C9E8A;"/>
+            <Label text="Welcome back! Please login."
+                   style="-fx-font-size: 12px; -fx-text-fill: #8A9490;"/>
+        </VBox>
+
+        <!-- Divider -->
+        <Region prefHeight="1" prefWidth="360"
+                style="-fx-background-color: #DDD8D0;"/>
+
+        <!-- Form -->
+        <VBox spacing="16" style="-fx-padding: 24 0 0 0;">
+
+            <!-- Role -->
+            <VBox spacing="5">
+                <Label text="ROLE"
+                       style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #6B7B74;"/>
+                <ComboBox fx:id="roleCombo" prefWidth="380"
+                          promptText="Select role..."
+                          style="-fx-font-size: 13px; -fx-background-color: #F7F5F2;
+                                 -fx-border-color: #DDD8D0; -fx-border-radius: 6; -fx-background-radius: 6;"/>
+            </VBox>
+
+            <!-- Username -->
+            <VBox spacing="5">
+                <Label text="USERNAME"
+                       style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #6B7B74;"/>
+                <TextField fx:id="usernameField" prefWidth="380"
+                           promptText="Enter username"
+                           style="-fx-font-size: 13px; -fx-background-color: #F7F5F2;
+                                  -fx-border-color: #DDD8D0; -fx-border-radius: 6;
+                                  -fx-background-radius: 6; -fx-padding: 8;"/>
+            </VBox>
+
+            <!-- Password -->
+            <VBox spacing="5">
+                <Label text="PASSWORD"
+                       style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #6B7B74;"/>
+                <StackPane>
+                    <PasswordField fx:id="passwordField" prefWidth="380"
+                                   promptText="Enter password"
+                                   style="-fx-font-size: 13px; -fx-background-color: #F7F5F2;
+                                          -fx-border-color: #DDD8D0; -fx-border-radius: 6;
+                                          -fx-background-radius: 6; -fx-padding: 8;"/>
+                    <TextField fx:id="passwordVisible" prefWidth="380"
+                               promptText="Enter password"
+                               style="-fx-font-size: 13px; -fx-background-color: #F7F5F2;
+                                      -fx-border-color: #DDD8D0; -fx-border-radius: 6;
+                                      -fx-background-radius: 6; -fx-padding: 8;"
+                               visible="false" managed="false"/>
+                    <Button fx:id="togglePasswordBtn" text="👁"
+                            onAction="#togglePassword"
+                            style="-fx-background-color: transparent; -fx-cursor: hand;"
+                            StackPane.alignment="CENTER_RIGHT"/>
+                </StackPane>
+            </VBox>
+
+            <!-- Error label -->
+            <Label fx:id="errorLabel"
+                   style="-fx-text-fill: #A03030; -fx-font-size: 12px;"
+                   text="" wrapText="true" maxWidth="380"/>
+
+        </VBox>
+
+        <!-- Buttons -->
+        <VBox spacing="10" style="-fx-padding: 24 0 0 0;">
+            <Button text="Login" prefWidth="380" prefHeight="40"
+                    onAction="#handleLogin"
+                    style="-fx-font-size: 14px; -fx-font-weight: bold;
+                           -fx-background-color: #2D4A3E; -fx-text-fill: #FFFFFF;
+                           -fx-background-radius: 8; -fx-cursor: hand;"/>
+            <HBox spacing="10">
+                <MenuButton text="Register" prefWidth="185" prefHeight="36"
+                            style="-fx-font-size: 13px; -fx-font-weight: bold;
+                                   -fx-background-color: #FFFFFF; -fx-border-color: #DDD8D0;
+                                   -fx-border-radius: 8; -fx-background-radius: 8;
+                                   -fx-text-fill: #6B7B74;">
+                    <items>
+                        <MenuItem text="Register as Member" onAction="#openMemberRegister"/>
+                        <MenuItem text="Register as Trainer" onAction="#openTrainerRegister"/>
+                    </items>
+                </MenuButton>
+                <Button text="Exit" prefWidth="185" prefHeight="36"
+                        onAction="#handleExit"
+                        style="-fx-font-size: 13px; -fx-font-weight: bold;
+                               -fx-background-color: #FFFFFF; -fx-border-color: #DDD8D0;
+                               -fx-border-radius: 8; -fx-background-radius: 8;
+                               -fx-text-fill: #6B7B74;"/>
+            </HBox>
+        </VBox>
+
+    </VBox>
+
+</StackPane>

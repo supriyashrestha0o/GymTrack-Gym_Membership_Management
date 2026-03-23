@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<!--
+  RegisterMember.fxml — Member Registration Screen
+  Two sections: Step 1 (Personal Details) and Step 2 (Membership Plan)
+-->
+
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.gymtrack.controller.RegisterMemberController"
+            fitToWidth="true"
+            style="-fx-background-color: #EDF2EE;">
+
+    <VBox spacing="20" style="-fx-padding: 30; -fx-background-color: #EDF2EE;">
+
+        <!-- ── Header ── -->
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Button text="← Back" onAction="#goBack"
+                    style="--fx-background-color: #FFFFFF; -fx-border-color: #DDD8D0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #2D4A3E; -fx-font-weight: bold; -fx-font-size: 12px;"/>
+            <Label text="Member Registration"
+                   style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+        </HBox>
+
+        <!-- ── Error label ── -->
+        <Label fx:id="errorLabel" text=""
+               style="-fx-text-fill: red; -fx-font-size: 12px;"
+               wrapText="true"/>
+
+        <!-- ══ STEP 1: Personal Details ══ -->
+        <VBox spacing="14" style="-fx-background-color: white; -fx-padding: 20; -fx-border-color: #DDD8D0; -fx-border-radius: 6;">
+
+            <Label text="STEP-1: Personal Details"
+                   style="-fx-font-size: 15px; -fx-font-weight: bold;"/>
+
+            <!-- Full Name -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="FullName:" prefWidth="140"
+                       style="-fx-font-size: 13px;"/>
+                <TextField fx:id="fullNameField" prefWidth="300"
+                           promptText="Enter full name"/>
+            </HBox>
+
+            <!-- Username -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="UserName:" prefWidth="140"
+                       style="-fx-font-size: 13px;"/>
+                <TextField fx:id="usernameField" prefWidth="300"
+                           promptText="Choose a username"/>
+            </HBox>
+
+            <!-- Password -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Password:" prefWidth="140"
+                       style="-fx-font-size: 13px;"/>
+                <PasswordField fx:id="passwordField" prefWidth="300"
+                               promptText="Enter password"/>
+            </HBox>
+
+            <!-- Confirm Password -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Confirm Password:" prefWidth="140"
+                       style="-fx-font-size: 13px;"/>
+                <PasswordField fx:id="confirmPasswordField" prefWidth="300"
+                               promptText="Re-enter password"/>
+            </HBox>
+
+            <!-- Email -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Email:" prefWidth="140"
+                       style="-fx-font-size: 13px;"/>
+                <TextField fx:id="emailField" prefWidth="300"
+                           promptText="example@email.com"/>
+            </HBox>
+
+            <!-- Phone -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Phone Number:" prefWidth="140"
+                       style="-fx-font-size: 13px;"/>
+                <TextField fx:id="phoneField" prefWidth="300"
+                           promptText="10-digit phone number"/>
+            </HBox>
+
+            <!-- Address -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Address:" prefWidth="140"
+                       style="-fx-font-size: 13px;"/>
+                <TextField fx:id="addressField" prefWidth="300"
+                           promptText="Your address"/>
+            </HBox>
+
+            <!-- DOB -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="DOB:" prefWidth="140"
+                       style="-fx-font-size: 13px;"/>
+                <DatePicker fx:id="dobPicker" prefWidth="300"
+                            promptText="Select date of birth"/>
+            </HBox>
+
+            <!-- Gender -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Gender:" prefWidth="140"
+                       style="-fx-font-size: 13px;"/>
+                <HBox spacing="16" alignment="CENTER_LEFT">
+                    <RadioButton fx:id="maleRadio"   text="Male"   toggleGroup="$genderGroup"/>
+                    <RadioButton fx:id="femaleRadio" text="Female" toggleGroup="$genderGroup"/>
+                    <RadioButton fx:id="otherRadio"  text="Other"  toggleGroup="$genderGroup"/>
+                </HBox>
+            </HBox>
+
+            <!-- Goal -->
+            <HBox spacing="10" alignment="TOP_LEFT">
+                <Label text="Goal:" prefWidth="140"
+                       style="-fx-font-size: 13px;" VBox.vgrow="NEVER"/>
+                <TextArea fx:id="goalArea" prefWidth="300" prefHeight="70"
+                          promptText="Your fitness goal..." wrapText="true"/>
+            </HBox>
+
+        </VBox>
+
+        <!-- ══ STEP 2: Membership Plan ══ -->
+        <VBox spacing="14" style="-fx-background-color: white; -fx-padding: 20; -fx-border-color: #DDD8D0; -fx-border-radius: 6;">
+
+            <Label text="STEP-2: Membership Plan"
+                   style="-fx-font-size: 15px; -fx-font-weight: bold;"/>
+
+            <!-- Plan Type -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Plan Type:" prefWidth="140"
+                       style="-fx-font-size: 13px;"/>
+                <ComboBox fx:id="planCombo" prefWidth="300"
+                          promptText="Select plan..."/>
+            </HBox>
+
+            <!-- Duration -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Duration (months):" prefWidth="140"
+                       style="-fx-font-size: 13px;"/>
+                <TextField fx:id="durationField" prefWidth="300"
+                           promptText="e.g. 3"/>
+            </HBox>
+
+            <!-- Start Date -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Start Date:" prefWidth="140"
+                       style="-fx-font-size: 13px;"/>
+                <DatePicker fx:id="startDatePicker" prefWidth="300"
+                            promptText="Select start date"/>
+            </HBox>
+
+        </VBox>
+
+        <!-- ── Register Button ── -->
+        <HBox alignment="CENTER_RIGHT" style="-fx-padding: 0 0 30 0;">
+            <Button text="Review Bill →" prefWidth="160" prefHeight="36"
+                    onAction="#handleRegister"
+                    style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-background-color: #2D4A3E; -fx-text-fill: #FFFFFF; -fx-background-radius: 8; -fx-cursor: hand;"/>
+        </HBox>
+
+    </VBox>
+</ScrollPane>

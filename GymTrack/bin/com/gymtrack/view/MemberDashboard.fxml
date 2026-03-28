@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.gymtrack.controller.MemberDashboardController"
+      spacing="0"
+      style="-fx-background-color: #EDF2EE;">
+
+    <!-- Top Bar -->
+    <HBox style="-fx-background-color: #2D4A3E ; -fx-padding: 14 24;
+                 -fx-border-color: #ddd; -fx-border-width: 0 0 1 0;"
+          alignment="CENTER_LEFT" spacing="10">
+        <Label text="⬡ GymTrack"
+               style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #FFFFFF;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Take a Leave" onAction="#openLeaveDialog"
+                style="-fx-background-color: #FFFFFF; -fx-text-fill: #2D4A3E; -fx-background-radius: 6; -fx-font-weight: bold; -fx-font-size: 12px;"/>
+        <Label fx:id="welcomeLabel" text="Member · "
+               style="-fx-font-size: 12px; -fx-text-fill: #C4956A;"/>
+        <Button text="Logout" onAction="#handleLogout"
+                style="-fx-background-color: #FFFFFF; -fx-text-fill: #2D4A3E; -fx-background-radius: 6; -fx-font-weight: bold; -fx-font-size: 12px;"/>
+    </HBox>
+
+    <!-- Main Content -->
+    <ScrollPane fitToWidth="true"
+                style="-fx-background-color: #EDF2EE;"
+                VBox.vgrow="ALWAYS">
+        <VBox spacing="20" style="-fx-padding: 30;">
+
+            <!-- Title -->
+            <VBox spacing="4">
+                <Label text="Member Dashboard"
+                       style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+                <Label fx:id="subtitleLabel" text="Welcome back!"
+                       style="-fx-font-size: 13px; -fx-text-fill: #666;"/>
+            </VBox>
+
+            <!-- Profile + Trainer Row -->
+            <HBox spacing="20">
+
+                <!-- My Profile Card -->
+                <VBox spacing="10" prefWidth="320"
+                      style="-fx-background-color: white; -fx-padding: 20;
+                             -fx-border-color: #ddd; -fx-border-radius: 8;">
+                    <Label text="My Profile"
+                           style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #555;"/>
+                    <GridPane hgap="16" vgap="8">
+                        <Label text="Name:"   GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-text-fill:#DDD8D0;"/>
+                        <Label fx:id="profileName"   GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                        <Label text="Plan:"   GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-text-fill:#DDD8D0;"/>
+                        <Label fx:id="profilePlan"   GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                        <Label text="Phone:"  GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-text-fill:#DDD8D0;"/>
+                        <Label fx:id="profilePhone"  GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                        <Label text="Email:"  GridPane.columnIndex="0" GridPane.rowIndex="3" style="-fx-text-fill:#DDD8D0;"/>
+                        <Label fx:id="profileEmail"  GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                        <Label text="Status:" GridPane.columnIndex="0" GridPane.rowIndex="4" style="-fx-text-fill:#DDD8D0;"/>
+                        <Label fx:id="profileStatus" text="Active"
+                               GridPane.columnIndex="1" GridPane.rowIndex="4"
+                               style="-fx-text-fill: #2D4A3E; -fx-font-weight: bold;"/>
+                    </GridPane>
+                </VBox>
+
+                <!-- My Trainer Card -->
+                <VBox spacing="10" prefWidth="320"
+                      style="-fx-background-color: white; -fx-padding: 20;
+                             -fx-border-color: #ddd; -fx-border-radius: 8;">
+                    <Label text="My Trainer"
+                           style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #555;"/>
+                    <GridPane hgap="16" vgap="8">
+                        <Label text="Name:"       GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-text-fill:#888;"/>
+                        <Label fx:id="trainerName"       GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                        <Label text="Speciality:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-text-fill:#888;"/>
+                        <Label fx:id="trainerSpeciality" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                        <Label text="Experience:" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-text-fill:#888;"/>
+                        <Label fx:id="trainerExperience" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                        <Label text="Phone:"      GridPane.columnIndex="0" GridPane.rowIndex="3" style="-fx-text-fill:#888;"/>
+                        <Label fx:id="trainerPhone"      GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                    </GridPane>
+                </VBox>
+
+            </HBox>
+
+            <!-- Crowd Chart -->
+            <VBox spacing="10"
+                  style="-fx-background-color: white; -fx-padding: 20;
+                         -fx-border-color: #ddd; -fx-border-radius: 8;">
+                <Label text="Gym Status — Today's Crowd by Hour"
+                       style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #555;"/>
+                <BarChart fx:id="crowdChart" prefHeight="240" animated="false">
+                    <xAxis><CategoryAxis label="Hour"/></xAxis>
+                    <yAxis>
+                        <NumberAxis label="Crowd %" lowerBound="0"
+                                    upperBound="100" tickUnit="20"/>
+                    </yAxis>
+                </BarChart>
+                <HBox spacing="30">
+                    <Label text="⬤ Peak hour: 6pm"
+                           style="-fx-text-fill: #e05555; -fx-font-size: 12px;"/>
+                    <Label text="⬤ Quiet hour: 10am"
+                           style="-fx-text-fill: #4db89e; -fx-font-size: 12px;"/>
+                </HBox>
+            </VBox>
+
+            <!-- ✅ Payment History Section -->
+            <VBox spacing="10"
+                  style="-fx-background-color: white; -fx-padding: 20;
+                         -fx-border-color: #ddd; -fx-border-radius: 8;">
+                <Label text="My Payment History"
+                       style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #555;"/>
+                <TableView fx:id="paymentHistoryTable" prefHeight="180">
+                    <columns>
+                        <TableColumn fx:id="colMyPayId"     text="ID"           prefWidth="60"/>
+                        <TableColumn fx:id="colMyPayAmount" text="Amount (Rs.)"  prefWidth="130"/>
+                        <TableColumn fx:id="colMyPayDate"   text="Date"         prefWidth="180"/>
+                        <TableColumn fx:id="colMyPayStatus" text="Status"       prefWidth="100"/>
+                    </columns>
+                </TableView>
+            </VBox>
+
+        </VBox>
+    </ScrollPane>
+
+</VBox>

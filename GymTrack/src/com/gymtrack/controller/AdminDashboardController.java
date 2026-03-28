@@ -18,7 +18,6 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -180,8 +179,8 @@ public class AdminDashboardController implements Initializable {
             this.endDate    = new SimpleStringProperty(endDate);
             this.status     = new SimpleStringProperty(status);
         }
-        public int    getLeaveId()    { return leaveId.get();    }
-        public String getStatus()     { return status.get();     }
+        public int    getLeaveId() { return leaveId.get(); }
+        public String getStatus()  { return status.get();  }
         public SimpleIntegerProperty leaveIdProperty()    { return leaveId;    }
         public SimpleStringProperty  memberNameProperty() { return memberName; }
         public SimpleStringProperty  reasonProperty()     { return reason;     }
@@ -203,11 +202,11 @@ public class AdminDashboardController implements Initializable {
             this.paymentDate = new SimpleStringProperty(paymentDate);
             this.status      = new SimpleStringProperty(status);
         }
-        public SimpleIntegerProperty paymentIdProperty()  { return paymentId;   }
-        public SimpleStringProperty  memberNameProperty() { return memberName;  }
-        public SimpleDoubleProperty  amountProperty()     { return amount;      }
-        public SimpleStringProperty  paymentDateProperty(){ return paymentDate; }
-        public SimpleStringProperty  statusProperty()     { return status;      }
+        public SimpleIntegerProperty paymentIdProperty()   { return paymentId;   }
+        public SimpleStringProperty  memberNameProperty()  { return memberName;  }
+        public SimpleDoubleProperty  amountProperty()      { return amount;      }
+        public SimpleStringProperty  paymentDateProperty() { return paymentDate; }
+        public SimpleStringProperty  statusProperty()      { return status;      }
     }
 
     // ── Initialize ────────────────────────────────────────────────────────────
@@ -247,10 +246,16 @@ public class AdminDashboardController implements Initializable {
         } catch (Exception e) { e.printStackTrace(); }
     }
 
-    @FXML private void goToMembers()  { mainTabPane.getSelectionModel().select(1); }
-    @FXML private void goToTrainers() { mainTabPane.getSelectionModel().select(2); }
-    @FXML private void goToAssign()   { mainTabPane.getSelectionModel().select(3); }
-    @FXML private void goToDelete()   { mainTabPane.getSelectionModel().select(4); }
+    // ── Sidebar + Tab Navigation ──────────────────────────────────────────────
+    // Tab order: Overview=0, Members=1, Trainers=2, Assign=3, Delete=4, Leave=5, Payments=6
+
+    @FXML private void sideGoOverview() { mainTabPane.getSelectionModel().select(0); }
+    @FXML private void goToMembers()    { mainTabPane.getSelectionModel().select(1); }
+    @FXML private void goToTrainers()   { mainTabPane.getSelectionModel().select(2); }
+    @FXML private void goToAssign()     { mainTabPane.getSelectionModel().select(3); }
+    @FXML private void goToDelete()     { mainTabPane.getSelectionModel().select(4); }
+    @FXML private void goToLeave()      { mainTabPane.getSelectionModel().select(5); }
+    @FXML private void goToPayments()   { mainTabPane.getSelectionModel().select(6); }
 
     // ── Members Table ─────────────────────────────────────────────────────────
 
@@ -326,7 +331,10 @@ public class AdminDashboardController implements Initializable {
                     rs.getInt("experience")
                 ));
             }
-        } catch (Exception e) { e.printStackTrace(); }
+        } catch (Exception e) {
+            System.out.println("Error loading trainers: " + e.getMessage());
+            e.printStackTrace();
+        }
         trainersTable.setItems(allTrainers);
     }
 
@@ -366,7 +374,6 @@ public class AdminDashboardController implements Initializable {
         Connection conn = DatabaseConnection.getConnection();
         try {
             conn.setAutoCommit(false);
-
             PreparedStatement del = conn.prepareStatement(
                 "DELETE FROM TrainerAssignments WHERE member_id = ?"
             );
@@ -374,12 +381,10 @@ public class AdminDashboardController implements Initializable {
             del.executeUpdate();
 
             PreparedStatement ins = conn.prepareStatement(
-                "INSERT INTO TrainerAssignments " +
-                "(member_id, trainer_id, assigned_date) VALUES (?, ?, ?)"
+                "INSERT INTO TrainerAssignments (member_id, trainer_id) VALUES (?, ?)"
             );
             ins.setInt(1, memberId);
             ins.setInt(2, trainerId);
-            ins.setString(3, LocalDate.now().toString());
             ins.executeUpdate();
 
             conn.commit();
@@ -476,8 +481,6 @@ public class AdminDashboardController implements Initializable {
                 }
                 ps.executeBatch();
                 conn.commit();
-                
-                
                 showAlert(Alert.AlertType.INFORMATION, "Deleted",
                     toDelete.size() + " user(s) deleted successfully.");
                 loadAll();
@@ -568,7 +571,6 @@ public class AdminDashboardController implements Initializable {
             if (rows == 0) { conn.rollback(); return; }
             conn.commit();
             System.out.println("✅ Leave " + status);
-            
             loadLeaves();
         } catch (Exception e) {
             try { conn.rollback(); } catch (Exception ignore) {}
@@ -651,7 +653,6 @@ public class AdminDashboardController implements Initializable {
             ps.setDouble(2, amount);
             ps.executeUpdate();
             conn.commit();
-            
             paymentStatusLabel.setStyle("-fx-text-fill: green;");
             paymentStatusLabel.setText("✅ Payment of Rs." + amount + " recorded!");
             paymentAmountField.clear();

@@ -57,17 +57,29 @@ public class RegisterMemberController implements Initializable {
         String email           = emailField.getText().trim();
         String phone           = phoneField.getText().trim();
         String address         = addressField.getText().trim();
+        String goal 		   = goalArea.getText().trim();
         String planType        = planCombo.getValue();
         String durationStr     = durationField.getText().trim();
         LocalDate startDate    = startDatePicker.getValue();
+        LocalDate dob          = dobPicker.getValue();
+        String gender          = maleRadio.isSelected() ? "Male"
+                                 : femaleRadio.isSelected() ? "Female"
+                                 : otherRadio.isSelected() ? "Other" : "";
+
+        // Convert LocalDate to String for validation and database
+        String dobStr       = dob != null ? dob.toString() : "";
+        String startDateStr = startDate != null ? startDate.toString() : "";
 
         // Validate form
         String error = ValidationUtil.validateMemberForm(
             fullName, email, phone, address,
             username, password, confirmPassword,
-            planType, durationStr, startDate
+            goal, planType, durationStr, startDateStr, dobStr, gender
         );
-        if (error != null) { errorLabel.setText(error); return; }
+        if (error != null) {
+            errorLabel.setText(error);
+            return;
+        }
 
         // Check username uniqueness
         if (usernameExists(username)) {
@@ -84,7 +96,7 @@ public class RegisterMemberController implements Initializable {
             "Member Name : " + fullName + "\n" +
             "Plan Type   : " + planType + "\n" +
             "Duration    : " + duration + " month(s)\n" +
-            "Start Date  : " + startDate + "\n" +
+            "Start Date  : " + startDateStr + "\n" +
             "Rate/Month  : Rs. " + (planType.equals("Premium") ? "3,000" : "1,500") + "\n" +
             "─────────────────────\n" +
             "Total Amount: Rs. " + String.format("%,.0f", totalAmount) + "\n\n" +
@@ -97,16 +109,11 @@ public class RegisterMemberController implements Initializable {
 
         Optional<ButtonType> result = confirm.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            String gender = maleRadio.isSelected() ? "Male"
-                          : femaleRadio.isSelected() ? "Female" : "Other";
-            String dob    = dobPicker.getValue() != null
-                          ? dobPicker.getValue().toString() : "";
-            String goal   = goalArea.getText().trim();
-
+            // Save member
             boolean saved = saveNewMember(
                 username, password, fullName, email, phone,
-                address, dob, gender, goal,
-                planType, duration, startDate.toString(), totalAmount
+                address, dobStr, gender, goal,
+                planType, duration, startDateStr, totalAmount
             );
 
             if (saved) {
@@ -129,7 +136,6 @@ public class RegisterMemberController implements Initializable {
 
         Connection conn = DatabaseConnection.getConnection();
         try {
-            // TRANSACTION: All 4 inserts succeed or all rollback
             conn.setAutoCommit(false);
 
             // Step 1: Insert into Users

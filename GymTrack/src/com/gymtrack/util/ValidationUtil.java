@@ -2,8 +2,7 @@ package com.gymtrack.util;
 
 import java.time.LocalDate;
 
-//  ValidationUtil.java — Utility class
- 
+// ValidationUtil.java — Utility class
 public class ValidationUtil {
 
     // Check that a string is not null or blank
@@ -16,12 +15,12 @@ public class ValidationUtil {
         return isNotEmpty(email) && email.contains("@");
     }
 
-    // Phone must be exactly 10 digits 
+    // Phone must be exactly 10 digits
     public static boolean isValidPhone(String phone) {
         return isNotEmpty(phone) && phone.matches("\\d{10}");
     }
 
-    // password and confirm password must match
+    // Password and confirm password must match
     public static boolean passwordsMatch(String password, String confirmPassword) {
         return isNotEmpty(password) && password.equals(confirmPassword);
     }
@@ -31,17 +30,36 @@ public class ValidationUtil {
         return years > 2;
     }
 
-    // Membership start date must NOT be in the past
-    public static boolean isValidStartDate(LocalDate date) {
-        if (date == null) return false;
-        return !date.isBefore(LocalDate.now());
+    // Start date must NOT be in the past
+    public static boolean isValidStartDate(String startDateStr) {
+        if (!isNotEmpty(startDateStr)) return false;
+        LocalDate startDate = LocalDate.parse(startDateStr);
+        return !startDate.isBefore(LocalDate.now());
     }
 
-    public static String validateMemberForm(
-            String fullName, String email, String phone, String address,
-            String username, String password, String confirmPassword,
-            String planType, String durationStr, LocalDate startDate) {
+    // Date of Birth must not be in the future
+    public static boolean isValidDob(String dobStr) {
+        if (!isNotEmpty(dobStr)) return false;
+        LocalDate dob = LocalDate.parse(dobStr);
+        return !dob.isAfter(LocalDate.now());
+    }
 
+    // MEMBER VALIDATION 
+    public static String validateMemberForm(
+            String fullName,
+            String email,
+            String phone,
+            String address,
+            String username,
+            String password,
+            String confirmPassword,
+            String goal,
+            String planType,
+            String durationStr,
+            String startDate,
+            String dob,
+            String gender
+    ) {
         if (!isNotEmpty(fullName))    return "Full Name is required.";
         if (!isNotEmpty(username))    return "Username is required.";
         if (!isNotEmpty(password))    return "Password is required.";
@@ -50,22 +68,27 @@ public class ValidationUtil {
         if (!isValidPhone(phone))     return "Phone must be exactly 10 digits.";
         if (!passwordsMatch(password, confirmPassword)) return "Passwords do not match.";
         if (!isNotEmpty(planType))    return "Please select a Plan Type.";
+        if (!isNotEmpty(goal))        return "Please enter your fitness goal.";
+        if (!isNotEmpty(dob) || !isValidDob(dob)) return "Please select a valid Date of Birth.";
+        if (!isNotEmpty(gender))      return "Please select Gender.";
 
         int duration = 0;
         try { duration = Integer.parseInt(durationStr); }
         catch (NumberFormatException e) { return "Duration must be a number."; }
-        if (duration < 1)             return "Duration must be at least 1 month.";
+        if (duration < 1) return "Duration must be at least 1 month.";
 
-        if (!isValidStartDate(startDate)) return "Start date cannot be in the past.";
+        if (!isNotEmpty(startDate) || !isValidStartDate(startDate))
+            return "Start date cannot be in the past.";
 
-        return null; // null 
+        return null; // All good
     }
 
+    // TRAINER VALIDATION 
     public static String validateTrainerForm(
             String fullName, String email, String phone,
             String username, String password, String confirmPassword,
-            String speciality, String experienceStr) {
-
+            String speciality, String experienceStr
+    ) {
         if (!isNotEmpty(fullName))    return "Full Name is required.";
         if (!isNotEmpty(username))    return "Username is required.";
         if (!isNotEmpty(password))    return "Password is required.";
@@ -82,10 +105,10 @@ public class ValidationUtil {
         return null;
     }
 
-    //Normal plan = Rs. 1500/month, Premium = Rs. 3000/month
+    // MEMBERSHIP AMOUNT 
+    // Normal plan = Rs. 1500/month, Premium = Rs. 3000/month
     public static double calculateMembershipAmount(String planType, int durationMonths) {
         double ratePerMonth = planType.equals("Premium") ? 3000.0 : 1500.0;
         return ratePerMonth * durationMonths;
     }
 }
-

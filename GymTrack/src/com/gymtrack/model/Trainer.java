@@ -29,7 +29,7 @@ public class Trainer extends User {
 
     // Getters 
     public int    getTrainerId()  { return trainerId;  }
-    public String getFullName()   { return fullName;   }
+    public String getfullName()   { return fullName;   }
     public String getEmail()      { return email;      }
     public String getPhone()      { return phone;      }
     public String getDob()        { return dob;        }

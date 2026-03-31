@@ -32,7 +32,7 @@
                style="-fx-text-fill: red; -fx-font-size: 12px;"
                wrapText="true"/>
 
-        <!-- ══ STEP 1: Personal Details ══ -->
+        <!--  STEP 1: Personal Details -->
         <VBox spacing="14" style="-fx-background-color: white; -fx-padding: 20; -fx-border-color: #DDD8D0; -fx-border-radius: 6;">
 
             <Label text="STEP-1: Personal Details"
@@ -148,7 +148,7 @@
 
         </VBox>
 
-        <!-- ══ STEP 2: Membership Plan ══ -->
+        <!-- STEP 2: Membership Plan  -->
         <VBox spacing="14" style="-fx-background-color: white; -fx-padding: 20; -fx-border-color: #DDD8D0; -fx-border-radius: 6;">
 
             <Label text="STEP-2: Membership Plan"

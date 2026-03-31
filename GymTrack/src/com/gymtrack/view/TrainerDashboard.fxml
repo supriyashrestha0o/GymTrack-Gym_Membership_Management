@@ -15,7 +15,7 @@
       spacing="0"
       style="-fx-background-color: #EDF2EE;">
 
-    <!-- ── Top Bar ── -->
+    <!-- Top Bar  -->
     <HBox style="-fx-background-color: #2D4A3E; -fx-padding: 14 24; -fx-border-color: #ddd; -fx-border-width: 0 0 1 0;"
           alignment="CENTER_LEFT" spacing="10">
         <Label text="⬡ GymTrack" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #FFFFFF;"/>
@@ -25,7 +25,7 @@
                 style="--fx-background-color: #FFFFFF; -fx-text-fill: #2D4A3E; -fx-background-radius: 6; -fx-font-weight: bold; -fx-font-size: 12px;"/>
     </HBox>
 
-    <!-- ── Main Content ── -->
+    <!--Main Content  -->
     <VBox spacing="20" style="-fx-padding: 30;" VBox.vgrow="ALWAYS">
 
         <VBox spacing="4">
@@ -33,7 +33,7 @@
             <Label fx:id="subtitleLabel" text="Welcome, Trainer!" style="-fx-font-size: 13px; -fx-text-fill: #666;"/>
         </VBox>
 
-        <!-- ── Tab Pane ── -->
+        <!--  Tab Pane -->
         <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
 
             <!-- Tab 1: My Profile -->
@@ -97,7 +97,7 @@
                     <HBox alignment="CENTER">
                         <Button text="Mark Attendance ✓" prefWidth="180" prefHeight="34"
                                 onAction="#markAttendance"
-                                style="-fx-font-size: 13px; --fx-background-color: #2D4A3E; -fx-text-fill: #FFFFFF; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                                style="-fx-font-size: 13px; -fx-background-color: #2D4A3E; -fx-text-fill: #FFFFFF; -fx-background-radius: 8; -fx-cursor: hand;"/>
                     </HBox>
                 </VBox>
             </Tab>

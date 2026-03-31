@@ -94,7 +94,7 @@ public class AdminDashboardController implements Initializable {
     private ObservableList<LeaveRow>   allLeaves   = FXCollections.observableArrayList();
     private ObservableList<PaymentRow> allPayments = FXCollections.observableArrayList();
 
-    // ── Inner Classes ─────────────────────────────────────────────────────────
+    // Inner Classes 
 
     public static class MemberRow {
         private final SimpleIntegerProperty id;
@@ -209,7 +209,7 @@ public class AdminDashboardController implements Initializable {
         public SimpleStringProperty  statusProperty()      { return status;      }
     }
 
-    // ── Initialize ────────────────────────────────────────────────────────────
+    // Initialize 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -232,7 +232,7 @@ public class AdminDashboardController implements Initializable {
         populatePaymentMemberCombo();
     }
 
-    // ── Overview ──────────────────────────────────────────────────────────────
+    // Overview
 
     private void loadStats() {
         try {
@@ -246,8 +246,8 @@ public class AdminDashboardController implements Initializable {
         } catch (Exception e) { e.printStackTrace(); }
     }
 
-    // ── Sidebar + Tab Navigation ──────────────────────────────────────────────
-    // Tab order: Overview=0, Members=1, Trainers=2, Assign=3, Delete=4, Leave=5, Payments=6
+    // Sidebar + Tab Navigation 
+    // Tab order: Overview, Members=1, Trainers=2, Assign, Delete, Leave, Payments
 
     @FXML private void sideGoOverview() { mainTabPane.getSelectionModel().select(0); }
     @FXML private void goToMembers()    { mainTabPane.getSelectionModel().select(1); }
@@ -257,7 +257,7 @@ public class AdminDashboardController implements Initializable {
     @FXML private void goToLeave()      { mainTabPane.getSelectionModel().select(5); }
     @FXML private void goToPayments()   { mainTabPane.getSelectionModel().select(6); }
 
-    // ── Members Table ─────────────────────────────────────────────────────────
+    // Members Table
 
     private void setupMembersTable() {
         colMId.setCellValueFactory(d -> d.getValue().idProperty().asObject());
@@ -304,7 +304,7 @@ public class AdminDashboardController implements Initializable {
             r -> r.getName().toLowerCase().contains(q)));
     }
 
-    // ── Trainers Table ────────────────────────────────────────────────────────
+    // Trainers Table 
 
     private void setupTrainersTable() {
         colTId.setCellValueFactory(d -> d.getValue().idProperty().asObject());
@@ -345,7 +345,7 @@ public class AdminDashboardController implements Initializable {
             r -> r.getName().toLowerCase().contains(q)));
     }
 
-    // ── Assign Trainer ────────────────────────────────────────────────────────
+    // Assign Trainer 
 
     private void populateAssignCombos() {
         List<String> memberNames = new ArrayList<>();
@@ -403,8 +403,7 @@ public class AdminDashboardController implements Initializable {
         }
     }
 
-    // ── Delete Users ──────────────────────────────────────────────────────────
-
+    // Delete Users 
     private void setupDeleteTable() {
         colDelSelect.setCellValueFactory(d -> d.getValue().selectedProperty());
         colDelSelect.setCellFactory(CheckBoxTableCell.forTableColumn(colDelSelect));
@@ -495,7 +494,7 @@ public class AdminDashboardController implements Initializable {
         }
     }
 
-    // ── Leave Requests ────────────────────────────────────────────────────────
+    // Leave Requests
 
     private void setupLeavesTable() {
         leaveIdCol.setCellValueFactory(d -> d.getValue().leaveIdProperty().asObject());
@@ -580,8 +579,7 @@ public class AdminDashboardController implements Initializable {
         }
     }
 
-    // ── Payments ──────────────────────────────────────────────────────────────
-
+    // Payments
     private void setupPaymentsTable() {
         colPayId.setCellValueFactory(d -> d.getValue().paymentIdProperty().asObject());
         colPayMember.setCellValueFactory(d -> d.getValue().memberNameProperty());
@@ -667,7 +665,7 @@ public class AdminDashboardController implements Initializable {
         }
     }
 
-    // ── Logout ────────────────────────────────────────────────────────────────
+    // Logout
 
     @FXML
     private void handleLogout() {

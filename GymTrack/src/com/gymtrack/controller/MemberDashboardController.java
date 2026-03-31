@@ -50,7 +50,7 @@ public class MemberDashboardController implements Initializable {
     @FXML private TableColumn<PaymentRow, String>  colMyPayDate;
     @FXML private TableColumn<PaymentRow, String>  colMyPayStatus;
 
-    // ── Inner Class ───────────────────────────────────────────────────────────
+    // Inner Class
     public static class PaymentRow {
         private final SimpleIntegerProperty paymentId;
         private final SimpleDoubleProperty  amount;
@@ -69,7 +69,7 @@ public class MemberDashboardController implements Initializable {
         public SimpleStringProperty  statusProperty()      { return status;      }
     }
 
-    // ── Initialize ────────────────────────────────────────────────────────────
+    // Initialize
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         User user = SessionManager.getCurrentUser();
@@ -82,7 +82,7 @@ public class MemberDashboardController implements Initializable {
         loadPaymentHistory(user.getUserId());
     }
 
-    // ── Member Profile ────────────────────────────────────────────────────────
+    // Member Profile
     private void loadMemberProfile(int userId) {
         try {
             Connection conn = DatabaseConnection.getConnection();
@@ -131,7 +131,7 @@ public class MemberDashboardController implements Initializable {
         } catch (Exception e) { e.printStackTrace(); }
     }
 
-    // ── Crowd Chart ───────────────────────────────────────────────────────────
+    // Crowd Chart 
     private void loadCrowdChart() {
         int[] crowdValues = {75, 60, 43, 14, 9, 12, 11, 20, 24, 36, 50, 72, 78};
         String[] hours    = {"6am","7am","8am","9am","10am","11am",
@@ -146,7 +146,7 @@ public class MemberDashboardController implements Initializable {
         crowdChart.setLegendVisible(false);
     }
 
-    // ── Payment History ───────────────────────────────────────────────────────
+    // Payment History 
     private void setupPaymentTable() {
         colMyPayId.setCellValueFactory(d -> d.getValue().paymentIdProperty().asObject());
         colMyPayAmount.setCellValueFactory(d -> d.getValue().amountProperty().asObject());
@@ -187,7 +187,7 @@ public class MemberDashboardController implements Initializable {
         } catch (Exception e) { e.printStackTrace(); }
     }
 
-    // ── Leave Dialog ──────────────────────────────────────────────────────────
+    // Leave Dialog 
     @FXML
     private void openLeaveDialog() {
         User user = SessionManager.getCurrentUser();

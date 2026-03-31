@@ -184,12 +184,12 @@ public class TrainerDashboardController implements Initializable {
             for (ClientRow row : allClients) {
                 String status = row.isPresent() ? "Present" : "Absent";
                 PreparedStatement ps = conn.prepareStatement(
-                    "INSERT INTO Attendance (member_id, trainer_id, date, status) VALUES (?, ?, ?, ?)"
+                    "INSERT INTO Attendance (member_id, `date`, status, trainer_id) VALUES (?, ?, ?, ?)"
                 );
-                ps.setInt(1, row.getId());
-                ps.setInt(2, trainerId);
-                ps.setString(3, today);
-                ps.setString(4, status);
+                ps.setInt(1, row.getId()); //member id
+                ps.setString(2, today); //date
+                ps.setString(3, status); //status
+                ps.setInt(4, trainerId); // trainer id
                 ps.executeUpdate();
                 if (row.isPresent()) markedNames.add(row.getName());
             }

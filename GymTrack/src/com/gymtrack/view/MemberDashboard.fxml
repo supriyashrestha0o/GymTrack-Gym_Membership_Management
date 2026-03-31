@@ -106,7 +106,7 @@
                 </HBox>
             </VBox>
 
-            <!-- ✅ Payment History Section -->
+            <!-- Payment History Section -->
             <VBox spacing="10"
                   style="-fx-background-color: white; -fx-padding: 20;
                          -fx-border-color: #ddd; -fx-border-radius: 8;">

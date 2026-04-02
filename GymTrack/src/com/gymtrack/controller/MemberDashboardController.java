@@ -144,6 +144,12 @@ public class MemberDashboardController implements Initializable {
         }
         crowdChart.getData().add(series);
         crowdChart.setLegendVisible(false);
+        
+        javafx.application.Platform.runLater(() -> {
+            crowdChart.lookupAll(".chart-bar").forEach(bar -> {
+                bar.setStyle("-fx-bar-fill: #66BB6A;");
+            });
+        });
     }
 
     // Payment History 

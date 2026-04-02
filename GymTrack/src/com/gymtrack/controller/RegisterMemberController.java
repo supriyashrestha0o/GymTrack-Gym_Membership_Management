@@ -16,7 +16,7 @@ import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
+import javafx.collections.FXCollections;
 public class RegisterMemberController implements Initializable {
 
     @FXML private TextField fullNameField;
@@ -40,11 +40,14 @@ public class RegisterMemberController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        // Initialize gender toggle group
         genderGroup = new ToggleGroup();
         maleRadio.setToggleGroup(genderGroup);
         femaleRadio.setToggleGroup(genderGroup);
         otherRadio.setToggleGroup(genderGroup);
         maleRadio.setSelected(true);
+        
+        // Initialize plan combo box - ADD THIS LINE
         planCombo.setItems(FXCollections.observableArrayList("Normal", "Premium"));
     }
 

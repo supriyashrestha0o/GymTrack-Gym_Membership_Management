@@ -22,7 +22,8 @@
         <!-- ── Header with Back Button ── -->
         <HBox spacing="10" alignment="CENTER_LEFT">
             <Button text="← Back" onAction="#goBack"
-                    style="-fx-background-color: #FFFFFF; -fx-border-color: #DDD8D0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #2D4A3E; -fx-font-weight: bold; -fx-font-size: 12px; -fx-cursor: hand;"/>
+                    style="-fx-background-color: #FFFFFF; -fx-border-color: #DDD8D0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #2D4A3E;
+                     -fx-font-weight: bold; -fx-font-size: 12px; -fx-cursor: hand;"/>
             <Label text="Member Registration"
                    style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2D4A3E;"/>
         </HBox>
@@ -35,7 +36,7 @@
         <!-- ── TWO COLUMN LAYOUT: Step 1 (Left) and Step 2 (Right) ── -->
         <HBox spacing="20" VBox.vgrow="ALWAYS">
             
-            <!-- ================= LEFT COLUMN: STEP 1 - Personal Details ================= -->
+            <!--LEFT COLUMN: STEP 1 - Personal Details -->
             <VBox spacing="14" HBox.hgrow="ALWAYS" 
                   style="-fx-background-color: white; -fx-padding: 20; -fx-border-color: #DDD8D0; -fx-border-radius: 8; -fx-background-radius: 8;">
 

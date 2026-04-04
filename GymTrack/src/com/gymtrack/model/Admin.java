@@ -12,3 +12,4 @@ public class Admin extends User {
         return "Admin{username='" + getUsername() + "'}";
     }
 }
+

@@ -6,9 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 public class Main extends Application {
-
     @Override
     public void start(Stage primaryStage) throws Exception {
         DatabaseConnection.initializeDatabase();
@@ -19,9 +17,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 780, 600));
         primaryStage.setResizable(true);
         primaryStage.setMaximized(true);
-        primaryStage.show();
-    }
-
+        primaryStage.show();}
     public static void switchScene(Stage stage, String fxmlPath) {
         try {
             Parent root = FXMLLoader.load(Main.class.getResource(fxmlPath));
@@ -29,9 +25,7 @@ public class Main extends Application {
         } catch (Exception e) {
             System.err.println("❌ Failed to switch to: " + fxmlPath);
             e.printStackTrace();
-        }
-    }
-
+        }}
     public static Stage openNewWindow(String fxmlPath, String title) {
         try {
             Parent root = FXMLLoader.load(Main.class.getResource(fxmlPath));
@@ -43,9 +37,7 @@ public class Main extends Application {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        }
-    }
-
+        }}
     public static void main(String[] args) {
         launch(args);
     }

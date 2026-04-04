@@ -21,7 +21,8 @@
         <!-- ── Header ── -->
         <HBox spacing="10" alignment="CENTER_LEFT">
             <Button text="← Back" onAction="#goBack"
-                    style="-fx-background-color: #FFFFFF; -fx-border-color: #DDD8D0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #2D4A3E; -fx-font-weight: bold; -fx-font-size: 12px;"/>
+                    style="-fx-background-color: #FFFFFF; -fx-border-color: #DDD8D0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #2D4A3E;
+                     -fx-font-weight: bold; -fx-font-size: 12px;"/>
             <Label text="Trainer Registration"
                    style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
         </HBox>

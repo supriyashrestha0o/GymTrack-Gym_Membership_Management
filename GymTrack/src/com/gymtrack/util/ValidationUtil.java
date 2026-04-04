@@ -1,7 +1,6 @@
 package com.gymtrack.util;
 
 import java.time.LocalDate;
-
 // ValidationUtil.java — Utility class
 public class ValidationUtil {
 

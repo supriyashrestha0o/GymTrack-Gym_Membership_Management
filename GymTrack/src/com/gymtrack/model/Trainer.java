@@ -1,7 +1,5 @@
 package com.gymtrack.model;
-
 public class Trainer extends User {
-
     private int    trainerId;
     private String fullName;
     private String email;
@@ -10,13 +8,9 @@ public class Trainer extends User {
     private String gender;
     private String speciality;
     private int    experience;
-
     // Constructor 
-    public Trainer(int userId, String username, String password,
-                   int trainerId, String fullName, String email,
-                   String phone, String dob, String gender,
-                   String speciality, int experience) {
-        super(userId, username, password, "Trainer");
+    public Trainer(int userId, String username, String password, int trainerId, String fullName, String email,
+                   String phone, String dob, String gender, String speciality, int experience) { super(userId, username, password, "Trainer");
         this.trainerId  = trainerId;
         this.fullName   = fullName;
         this.email      = email;
@@ -24,9 +18,7 @@ public class Trainer extends User {
         this.dob        = dob;
         this.gender     = gender;
         this.speciality = speciality;
-        this.experience = experience;
-    }
-
+        this.experience = experience;}
     // Getters 
     public int    getTrainerId()  { return trainerId;  }
     public String getfullName()   { return fullName;   }
@@ -36,7 +28,6 @@ public class Trainer extends User {
     public String getGender()     { return gender;     }
     public String getSpeciality() { return speciality; }
     public int    getExperience() { return experience; }
-
     // Setters
     public void setTrainerId(int id)       { this.trainerId  = id; }
     public void setFullName(String n)      { this.fullName   = n;  }
@@ -46,7 +37,6 @@ public class Trainer extends User {
     public void setGender(String g)        { this.gender     = g;  }
     public void setSpeciality(String s)    { this.speciality = s;  }
     public void setExperience(int exp)     { this.experience = exp;}
-
     @Override
     public String toString() { return fullName; }
 }

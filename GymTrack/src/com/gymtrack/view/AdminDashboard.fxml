@@ -9,9 +9,7 @@
       fx:controller="com.gymtrack.controller.AdminDashboardController"
       style="-fx-background-color: #EDF2EE;">
 
-    <!-- ═══════════════════════════════
-         LEFT SIDEBAR
-    ═══════════════════════════════ -->
+    <!-- LEFT SIDEBAR -->
     <VBox prefWidth="300"
           style="-fx-background-color: #3D5E50;
                  -fx-padding: 0;"
@@ -112,9 +110,6 @@
         </VBox>
     </VBox>
 
-    <!-- ═══════════════════════════════
-         ORIGINAL MAIN CONTENT (unchanged)
-    ═══════════════════════════════ -->
     <VBox spacing="0" HBox.hgrow="ALWAYS"
           style="-fx-background-color: #EDF2EE;">
 
@@ -336,5 +331,4 @@
             </TabPane>
         </VBox>
     </VBox>
-
 </HBox>

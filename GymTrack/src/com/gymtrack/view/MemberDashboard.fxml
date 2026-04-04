@@ -121,7 +121,6 @@
                     </columns>
                 </TableView>
             </VBox>
-
         </VBox>
     </ScrollPane>
 

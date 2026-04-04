@@ -26,7 +26,6 @@ import java.util.ResourceBundle;
 public class AdminDashboardController implements Initializable {
 
     @FXML private TabPane mainTabPane;
-
     // Overview
     @FXML private Label totalMembersLabel;
     @FXML private Label totalTrainersLabel;
@@ -233,7 +232,6 @@ public class AdminDashboardController implements Initializable {
     }
 
     // Overview
-
     private void loadStats() {
         try {
             Connection conn = DatabaseConnection.getConnection();
